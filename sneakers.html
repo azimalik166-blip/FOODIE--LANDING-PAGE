@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SoleStyle | Premium Sneakers</title>
+
+    <!-- Bootstrap 5 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f7f7f7;
+            color: #111;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 18px 0;
+            transition: 0.3s;
+        }
+
+        .navbar-brand {
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .navbar-brand span {
+            color: #ff4d00;
+        }
+
+        .nav-link {
+            color: #111 !important;
+            font-weight: 500;
+            margin: 0 8px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #ff4d00 !important;
+        }
+
+        .nav-icon {
+            font-size: 21px;
+            margin-left: 15px;
+            cursor: pointer;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 100vh;
+            padding-top: 100px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    105deg,
+                    #f4f1ec 0%,
+                    #f4f1ec 48%,
+                    #e7e2da 48%,
+                    #e7e2da 100%
+                );
+        }
+
+        .hero-content {
+            padding: 50px 0;
+        }
+
+        .hero-small {
+            color: #ff4d00;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 6vw, 82px);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -3px;
+        }
+
+        .hero h1 span {
+            color: #ff4d00;
+        }
+
+        .hero p {
+            color: #666;
+            max-width: 520px;
+            line-height: 1.8;
+            margin: 25px 0;
+        }
+
+        .btn-shop {
+            background: #111;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-shop:hover {
+            background: #ff4d00;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .btn-explore {
+            color: #111;
+            border: 1px solid #111;
+            padding: 13px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            margin-left: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-explore:hover {
+            background: #111;
+            color: white;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-height: 600px;
+            object-fit: contain;
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 30px 25px rgba(0,0,0,0.25));
+        }
+
+        @keyframes float {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-18px);
+            }
+
+        }
+
+        /* ================= SECTION ================= */
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            margin-bottom: 50px;
+        }
+
+        .section-title small {
+            color: #ff4d00;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-top: 8px;
+        }
+
+        .section-title p {
+            color: #777;
+            max-width: 600px;
+        }
+
+        /* ================= CATEGORIES ================= */
+
+        .category-card {
+            position: relative;
+            height: 260px;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .category-content {
+            position: absolute;
+            left: 25px;
+            bottom: 25px;
+            color: white;
+        }
+
+        .category-content h3 {
+            font-weight: 700;
+        }
+
+        .category-content a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid #ff4d00;
+        }
+
+        /* ================= PRODUCTS ================= */
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+            transition: 0.4s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            height: 280px;
+            background: #f1f1f1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.08);
+        }
+
+        .sale-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ff4d00;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .heart {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 38px;
+            height: 38px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .heart:hover {
+            color: #ff4d00;
+        }
+
+        .product-info {
+            padding: 22px;
+        }
+
+        .product-info h5 {
+            font-weight: 600;
+        }
+
+        .product-info p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .price {
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .old-price {
+            color: #aaa;
+            text-decoration: line-through;
+            font-size: 14px;
+            margin-left: 8px;
+        }
+
+        /* ================= SALE ================= */
+
+        .sale-section {
+            background: #111;
+            color: white;
+            overflow: hidden;
+        }
+
+        .sale-content {
+            padding: 70px 0;
+        }
+
+        .sale-content small {
+            color: #ff4d00;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .sale-content h2 {
+            font-size: clamp(40px, 6vw, 70px);
+            font-weight: 800;
+            line-height: 1;
+            margin: 15px 0;
+        }
+
+        .sale-content h2 span {
+            color: #ff4d00;
+        }
+
+        .sale-content p {
+            color: #aaa;
+            max-width: 500px;
+            line-height: 1.8;
+        }
+
+        .sale-image {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            object-fit: cover;
+        }
+
+        /* ================= FEATURES ================= */
+
+        .feature-box {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .feature-icon {
+            font-size: 35px;
+            color: #ff4d00;
+            margin-bottom: 15px;
+        }
+
+        .feature-box h5 {
+            font-weight: 700;
+        }
+
+        .feature-box p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* ================= TESTIMONIAL ================= */
+
+        .review-card {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            height: 100%;
+        }
+
+        .stars {
+            color: #ff4d00;
+            margin-bottom: 15px;
+        }
+
+        .review-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .reviewer {
+            font-weight: 700;
+            margin-top: 20px;
+        }
+
+        /* ================= NEWSLETTER ================= */
+
+        .newsletter {
+            background: #ebe7e0;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            font-weight: 800;
+            font-size: 40px;
+        }
+
+        .newsletter p {
+            color: #777;
+            margin: 15px auto 30px;
+            max-width: 550px;
+        }
+
+        .newsletter-form {
+            max-width: 550px;
+            margin: auto;
+            display: flex;
+            background: white;
+            padding: 6px;
+            border-radius: 5px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 12px 15px;
+        }
+
+        .newsletter-form button {
+            border: none;
+            background: #111;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #111;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-brand {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .footer-brand span {
+            color: #ff4d00;
+        }
+
+        footer p {
+            color: #888;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ff4d00;
+        }
+
+        .social a {
+            color: white;
+            font-size: 20px;
+            margin-right: 15px;
+            transition: 0.3s;
+        }
+
+        .social a:hover {
+            color: #ff4d00;
+        }
+
+        /* ================= ANIMATION ================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: 0.8s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 991px) {
+
+            .hero {
+                text-align: center;
+                background: #f4f1ec;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-image {
+                margin-top: 30px;
+                max-height: 450px;
+            }
+
+            .navbar-nav {
+                background: white;
+                padding: 15px;
+                margin-top: 15px;
+                border-radius: 8px;
+            }
+
+            .nav-icon {
+                margin-left: 5px;
+            }
+
+            .sale-section {
+                text-align: center;
+            }
+
+            .sale-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+        }
+
+        @media (max-width: 576px) {
+
+            .section {
+                padding: 70px 0;
+            }
+
+            .hero {
+                min-height: auto;
+                padding-top: 90px;
+            }
+
+            .hero h1 {
+                font-size: 47px;
+                letter-spacing: -2px;
+            }
+
+            .hero .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            .btn-explore {
+                margin-left: 0;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            .product-image {
+                height: 240px;
+            }
+
+            .category-card {
+                height: 220px;
+            }
+
+            .newsletter h2 {
+                font-size: 30px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                gap: 5px;
+                background: transparent;
+            }
+
+            .newsletter-form input {
+                background: white;
+                border-radius: 4px;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg fixed-top">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="#">
+            SOLE<span>STYLE</span>
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNav"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#categories">Categories</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#products">Shop</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#sale">Sale</a>
+                </li>
+
+                <li class="nav-item">
+                    <i class="bi bi-search nav-icon"></i>
+                </li>
+
+                <li class="nav-item">
+                    <i class="bi bi-bag nav-icon"></i>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+
+                <div class="hero-content reveal">
+
+                    <div class="hero-small">
+                        New Collection 2026
+                    </div>
+
+                    <h1>
+                        STEP INTO <br>
+                        <span>YOUR STYLE</span>
+                    </h1>
+
+                    <p>
+                        Discover premium sneakers designed for
+                        comfort, performance and everyday style.
+                        Find the perfect pair for every journey.
+                    </p>
+
+                    <a href="#products" class="btn btn-shop">
+                        Shop Collection
+                    </a>
+
+                    <a href="#categories" class="btn btn-explore">
+                        Explore
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-6">
+
+                <img
+                    class="hero-image"
+                    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=85"
+                    alt="Premium Sneaker"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="py-5 bg-white">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-lg-3 col-6">
+
+                <div class="feature-box">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-truck"></i>
+                    </div>
+
+                    <h5>Free Shipping</h5>
+
+                    <p>Free delivery on orders over $100.</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-6">
+
+                <div class="feature-box">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-arrow-repeat"></i>
+                    </div>
+
+                    <h5>Easy Returns</h5>
+
+                    <p>30-day hassle-free returns.</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-6">
+
+                <div class="feature-box">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+
+                    <h5>Secure Payment</h5>
+
+                    <p>Your payment is always protected.</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-6">
+
+                <div class="feature-box">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-headset"></i>
+                    </div>
+
+                    <h5>24/7 Support</h5>
+
+                    <p>We're here whenever you need us.</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CATEGORIES ================= -->
+
+<section class="section" id="categories">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <small>SHOP BY CATEGORY</small>
+
+            <h2>Find Your Perfect Pair</h2>
+
+            <p>
+                Explore our latest collections designed for
+                every lifestyle.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-md-4 reveal">
+
+                <div class="category-card">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=900&q=80"
+                        alt="Running Shoes"
+                    >
+
+                    <div class="category-content">
+
+                        <h3>Running</h3>
+
+                        <a href="#products">Shop Now →</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 reveal">
+
+                <div class="category-card">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=900&q=80"
+                        alt="Lifestyle Shoes"
+                    >
+
+                    <div class="category-content">
+
+                        <h3>Lifestyle</h3>
+
+                        <a href="#products">Shop Now →</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 reveal">
+
+                <div class="category-card">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=900&q=80"
+                        alt="Sports Shoes"
+                    >
+
+                    <div class="category-content">
+
+                        <h3>Sports</h3>
+
+                        <a href="#products">Shop Now →</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section class="section bg-white" id="products">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <small>BEST SELLERS</small>
+
+            <h2>Trending Sneakers</h2>
+
+            <p>
+                Our most popular sneakers, loved by thousands
+                of customers.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <!-- PRODUCT 1 -->
+
+            <div class="col-lg-3 col-md-6 reveal">
+
+                <div class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="sale-badge">NEW</span>
+
+                        <div class="heart">
+                            <i class="bi bi-heart"></i>
+                        </div>
+
+                        <img
+                            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80"
+                            alt="Runner X"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h5>Runner X</h5>
+
+                        <p>Performance Running Shoe</p>
+
+                        <div class="price">
+                            $129
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 2 -->
+
+            <div class="col-lg-3 col-md-6 reveal">
+
+                <div class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="sale-badge">SALE</span>
+
+                        <div class="heart">
+                            <i class="bi bi-heart"></i>
+                        </div>
+
+                        <img
+                            src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=700&q=80"
+                            alt="Urban Classic"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h5>Urban Classic</h5>
+
+                        <p>Everyday Lifestyle Sneaker</p>
+
+                        <div class="price">
+                            $99
+                            <span class="old-price">$129</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 3 -->
+
+            <div class="col-lg-3 col-md-6 reveal">
+
+                <div class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="sale-badge">HOT</span>
+
+                        <div class="heart">
+                            <i class="bi bi-heart"></i>
+                        </div>
+
+                        <img
+                            src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=700&q=80"
+                            alt="Street Pro"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h5>Street Pro</h5>
+
+                        <p>Premium Streetwear Sneaker</p>
+
+                        <div class="price">
+                            $149
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 4 -->
+
+            <div class="col-lg-3 col-md-6 reveal">
+
+                <div class="product-card">
+
+                    <div class="product-image">
+
+                        <div class="heart">
+                            <i class="bi bi-heart"></i>
+                        </div>
+
+                        <img
+                            src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=700&q=80"
+                            alt="Air Flex"
+                        >
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h5>Air Flex</h5>
+
+                        <p>Lightweight Training Shoe</p>
+
+                        <div class="price">
+                            $119
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SALE ================= -->
+
+<section class="sale-section" id="sale">
+
+    <div class="container-fluid">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+
+                <div class="sale-content container">
+
+                    <small>LIMITED TIME OFFER</small>
+
+                    <h2>
+                        UP TO <span>50% OFF</span>
+                    </h2>
+
+                    <p>
+                        Upgrade your sneaker collection with
+                        exclusive styles at incredible prices.
+                        Don't miss this limited-time sale.
+                    </p>
+
+                    <a href="#products" class="btn btn-shop">
+                        Shop Sale
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-6 p-0">
+
+                <img
+                    class="sale-image"
+                    src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1200&q=80"
+                    alt="Sneaker Sale"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= REVIEWS ================= -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <small>CUSTOMER REVIEWS</small>
+
+            <h2>Loved By Sneaker Fans</h2>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-lg-4 reveal">
+
+                <div class="review-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "The quality is amazing and the shoes
+                        look even better in person. Definitely
+                        ordering again."
+                    </p>
+
+                    <div class="reviewer">
+                        — James Wilson
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-4 reveal">
+
+                <div class="review-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "Fast delivery, great packaging and
+                        super comfortable sneakers. Highly
+                        recommended!"
+                    </p>
+
+                    <div class="reviewer">
+                        — Olivia Brown
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-4 reveal">
+
+                <div class="review-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "SoleStyle has become my favorite sneaker
+                        store. The designs are modern and unique."
+                    </p>
+
+                    <div class="reviewer">
+                        — Ethan Miller
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= NEWSLETTER ================= -->
+
+<section class="newsletter">
+
+    <div class="container">
+
+        <h2>Stay In The Loop</h2>
+
+        <p>
+            Subscribe for new arrivals, exclusive offers
+            and sneaker drops.
+        </p>
+
+        <form class="newsletter-form" id="newsletterForm">
+
+            <input
+                type="email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <button type="submit">
+                Subscribe
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="row g-5">
+
+            <div class="col-lg-5">
+
+                <div class="footer-brand">
+                    SOLE<span>STYLE</span>
+                </div>
+
+                <p class="mt-3">
+                    Premium sneakers for people who
+                    never stop moving.
+                </p>
+
+                <div class="social mt-4">
+
+                    <a href="#">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="bi bi-twitter-x"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-2 col-6">
+
+                <h6>Shop</h6>
+
+                <ul class="footer-links mt-3">
+
+                    <li>
+                        <a href="#products">New Arrivals</a>
+                    </li>
+
+                    <li>
+                        <a href="#products">Best Sellers</a>
+                    </li>
+
+                    <li>
+                        <a href="#sale">Sale</a>
+                    </li>
+
+                    <li>
+                        <a href="#categories">Collections</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="col-lg-2 col-6">
+
+                <h6>Help</h6>
+
+                <ul class="footer-links mt-3">
+
+                    <li>
+                        <a href="#">Shipping</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Returns</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Size Guide</a>
+                    </li>
+
+                    <li>
+                        <a href="#">FAQ</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="col-lg-3">
+
+                <h6>Contact</h6>
+
+                <p class="mt-3">
+                    Email: hello@solestyle.com
+                </p>
+
+                <p>
+                    Phone: +1 234 567 890
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <hr class="border-secondary mt-5">
+
+        <div class="text-center">
+
+            <p class="mb-0">
+                © 2026 SoleStyle. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+
+    /* ================= SCROLL REVEAL ================= */
+
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+        function(entries) {
+
+            entries.forEach(function(entry) {
+
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    reveals.forEach(function(element) {
+        observer.observe(element);
+    });
+
+
+    /* ================= HEART BUTTON ================= */
+
+    const hearts = document.querySelectorAll(".heart");
+
+    hearts.forEach(function(heart) {
+
+        heart.addEventListener("click", function() {
+
+            const icon = this.querySelector("i");
+
+            icon.classList.toggle("bi-heart");
+            icon.classList.toggle("bi-heart-fill");
+
+            this.style.color =
+                icon.classList.contains("bi-heart-fill")
+                    ? "#ff4d00"
+                    : "#111";
+
+        });
+
+    });
+
+
+    /* ================= NEWSLETTER ================= */
+
+    document
+        .getElementById("newsletterForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            alert("Thank you for subscribing!");
+
+            this.reset();
+
+        });
+
+
+    /* ================= NAVBAR ================= */
+
+    window.addEventListener("scroll", function() {
+
+        const navbar = document.querySelector(".navbar");
+
+        if (window.scrollY > 50) {
+
+            navbar.style.padding = "10px 0";
+            navbar.style.boxShadow =
+                "0 5px 20px rgba(0,0,0,0.08)";
+
+        } else {
+
+            navbar.style.padding = "18px 0";
+            navbar.style.boxShadow = "none";
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>

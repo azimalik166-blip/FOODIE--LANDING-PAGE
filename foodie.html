@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FOODIE - Delicious Food</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            color: #222;
+            background: #fffaf5;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 17px 0;
+            transition: .3s;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 5px 25px rgba(0,0,0,.08);
+        }
+
+        .navbar-brand {
+            font-size: 26px;
+            font-weight: 800;
+            color: #ff5a36 !important;
+        }
+
+        .nav-link {
+            color: #555 !important;
+            font-size: 14px;
+            margin: 0 8px;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #ff5a36 !important;
+        }
+
+        .btn-food {
+            background: #ff5a36;
+            color: white;
+            border: none;
+            padding: 12px 23px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .btn-food:hover {
+            background: #e94825;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 6vw, 72px);
+            line-height: 1.08;
+            font-weight: 800;
+        }
+
+        .hero h1 span {
+            color: #ff5a36;
+        }
+
+        .hero p {
+            color: #777;
+            font-size: 17px;
+            line-height: 1.8;
+            max-width: 550px;
+            margin: 25px 0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline-food {
+            border: 1px solid #ddd;
+            color: #333;
+            padding: 12px 23px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .btn-outline-food:hover {
+            border-color: #ff5a36;
+            color: #ff5a36;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 50%;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%,100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .floating-card {
+            position: absolute;
+            bottom: 10%;
+            left: 0;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,.15);
+        }
+
+        .floating-card i {
+            color: #ffb400;
+        }
+
+        /* SECTION */
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 40px;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            color: #777;
+            max-width: 600px;
+            margin: 12px auto 45px;
+            line-height: 1.8;
+        }
+
+        /* CATEGORIES */
+
+        .category {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid #eee;
+            transition: .3s;
+        }
+
+        .category:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,.08);
+        }
+
+        .category-icon {
+            width: 65px;
+            height: 65px;
+            background: #fff0eb;
+            color: #ff5a36;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 27px;
+        }
+
+        .category h6 {
+            font-weight: 700;
+        }
+
+        /* FOOD CARDS */
+
+        .food-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            height: 100%;
+            transition: .3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 45px rgba(0,0,0,.1);
+        }
+
+        .food-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .food-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .5s;
+        }
+
+        .food-card:hover .food-image img {
+            transform: scale(1.08);
+        }
+
+        .food-content {
+            padding: 22px;
+        }
+
+        .food-content h5 {
+            font-weight: 700;
+        }
+
+        .food-content p {
+            color: #888;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .rating {
+            color: #ffb400;
+            font-size: 13px;
+        }
+
+        .price {
+            color: #ff5a36;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        /* OFFER */
+
+        .offer {
+            background: #ff5a36;
+            color: white;
+            border-radius: 25px;
+            padding: 60px;
+            overflow: hidden;
+        }
+
+        .offer h2 {
+            font-size: 45px;
+            font-weight: 800;
+        }
+
+        .offer p {
+            opacity: .9;
+            line-height: 1.8;
+        }
+
+        .offer-img {
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        /* ABOUT */
+
+        .about-img {
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        .about-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-list li {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .about-list i {
+            color: #ff5a36;
+            margin-right: 10px;
+        }
+
+        /* TESTIMONIAL */
+
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            border: 1px solid #eee;
+            height: 100%;
+        }
+
+        .testimonial p {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .stars {
+            color: #ffb400;
+            margin-bottom: 15px;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #ff5a36;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        /* RESERVATION */
+
+        .reservation {
+            background: #171717;
+            color: white;
+            border-radius: 25px;
+            padding: 60px;
+        }
+
+        .reservation h2 {
+            font-size: 40px;
+            font-weight: 800;
+        }
+
+        .form-control {
+            border: none;
+            padding: 14px;
+            border-radius: 9px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #171717;
+            color: white;
+            padding: 70px 0 25px;
+        }
+
+        footer h5 {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        footer p,
+        footer a {
+            color: #999;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        footer a {
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        footer a:hover {
+            color: #ff5a36;
+        }
+
+        .social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: white;
+        }
+
+        .social a:hover {
+            background: #ff5a36;
+            border-color: #ff5a36;
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid #333;
+            margin-top: 40px;
+            padding-top: 20px;
+            text-align: center;
+            color: #777;
+            font-size: 12px;
+        }
+
+        /* ANIMATION */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: .8s;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:991px) {
+
+            .navbar-collapse {
+                background: white;
+                padding: 20px;
+                border-radius: 12px;
+                margin-top: 10px;
+            }
+
+            .hero {
+                text-align: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                margin-top: 50px;
+            }
+
+            .offer,
+            .reservation {
+                padding: 40px 25px;
+            }
+        }
+
+        @media(max-width:576px) {
+
+            .section {
+                padding: 70px 0;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .offer h2,
+            .reservation h2 {
+                font-size: 32px;
+            }
+
+            .floating-card {
+                left: 5px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="#">
+            <i class="bi bi-egg-fried"></i>
+            FOODIE
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#menu">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+
+            <ul class="navbar-nav mx-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#categories">Categories</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#menu-food">Menu</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#reviews">Reviews</a>
+                </li>
+
+            </ul>
+
+            <a href="#reservation" class="btn btn-food">
+                Order Now
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6 hero-content">
+
+                <small class="text-danger fw-bold">
+                    <i class="bi bi-stars"></i>
+                    Fresh & Delicious
+                </small>
+
+                <h1 class="mt-3">
+                    Good food.
+                    <span>Good mood.</span>
+                </h1>
+
+                <p>
+                    Discover delicious meals prepared with fresh
+                    ingredients and delivered straight to your door.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#menu-food" class="btn btn-food">
+                        Explore Menu
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+
+                    <a href="#reservation" class="btn btn-outline-food">
+                        Book a Table
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-6 hero-image">
+
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80"
+                     alt="Healthy Food">
+
+                <div class="floating-card">
+
+                    <div class="rating">
+                        ★★★★★
+                    </div>
+
+                    <strong>4.9/5 Rating</strong>
+
+                    <br>
+
+                    <small class="text-muted">
+                        From 2,500+ customers
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CATEGORIES -->
+
+<section class="section" id="categories">
+
+    <div class="container">
+
+        <div class="text-center">
+
+            <h2 class="section-title">
+                Explore Categories
+            </h2>
+
+            <p class="section-subtitle">
+                Choose from our most popular food categories.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-6 col-md-3 reveal">
+
+                <div class="category">
+
+                    <div class="category-icon">
+                        <i class="bi bi-cup-hot"></i>
+                    </div>
+
+                    <h6>Breakfast</h6>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-md-3 reveal">
+
+                <div class="category">
+
+                    <div class="category-icon">
+                        <i class="bi bi-egg-fried"></i>
+                    </div>
+
+                    <h6>Main Course</h6>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-md-3 reveal">
+
+                <div class="category">
+
+                    <div class="category-icon">
+                        <i class="bi bi-cake2"></i>
+                    </div>
+
+                    <h6>Desserts</h6>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-md-3 reveal">
+
+                <div class="category">
+
+                    <div class="category-icon">
+                        <i class="bi bi-cup-straw"></i>
+                    </div>
+
+                    <h6>Drinks</h6>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MENU -->
+
+<section class="section" id="menu-food">
+
+    <div class="container">
+
+        <div class="text-center">
+
+            <h2 class="section-title">
+                Popular Dishes
+            </h2>
+
+            <p class="section-subtitle">
+                Our customers' favorite meals, prepared fresh every day.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- FOOD 1 -->
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="food-card">
+
+                    <div class="food-image">
+
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80"
+                             alt="Burger">
+
+                    </div>
+
+                    <div class="food-content">
+
+                        <div class="d-flex justify-content-between">
+
+                            <h5>Classic Burger</h5>
+
+                            <span class="price">$12</span>
+
+                        </div>
+
+                        <div class="rating mb-2">
+                            ★★★★★
+                        </div>
+
+                        <p>
+                            Juicy beef patty with fresh vegetables,
+                            cheese and our special sauce.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOD 2 -->
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="food-card">
+
+                    <div class="food-image">
+
+                        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=700&q=80"
+                             alt="Pasta">
+
+                    </div>
+
+                    <div class="food-content">
+
+                        <div class="d-flex justify-content-between">
+
+                            <h5>Creamy Pasta</h5>
+
+                            <span class="price">$15</span>
+
+                        </div>
+
+                        <div class="rating mb-2">
+                            ★★★★★
+                        </div>
+
+                        <p>
+                            Creamy Italian pasta made with fresh herbs
+                            and premium ingredients.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOD 3 -->
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="food-card">
+
+                    <div class="food-image">
+
+                        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=80"
+                             alt="Salad">
+
+                    </div>
+
+                    <div class="food-content">
+
+                        <div class="d-flex justify-content-between">
+
+                            <h5>Fresh Salad</h5>
+
+                            <span class="price">$10</span>
+
+                        </div>
+
+                        <div class="rating mb-2">
+                            ★★★★★
+                        </div>
+
+                        <p>
+                            Fresh vegetables, avocado and healthy
+                            dressing for a perfect meal.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOD 4 -->
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="food-card">
+
+                    <div class="food-image">
+
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80"
+                             alt="Pizza">
+
+                    </div>
+
+                    <div class="food-content">
+
+                        <div class="d-flex justify-content-between">
+
+                            <h5>Italian Pizza</h5>
+
+                            <span class="price">$18</span>
+
+                        </div>
+
+                        <div class="rating mb-2">
+                            ★★★★★
+                        </div>
+
+                        <p>
+                            Crispy crust topped with mozzarella,
+                            tomatoes and fresh basil.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOD 5 -->
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="food-card">
+
+                    <div class="food-image">
+
+                        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=700&q=80"
+                             alt="Dessert">
+
+                    </div>
+
+                    <div class="food-content">
+
+                        <div class="d-flex justify-content-between">
+
+                            <h5>Sweet Donuts</h5>
+
+                            <span class="price">$8</span>
+
+                        </div>
+
+                        <div class="rating mb-2">
+                            ★★★★★
+                        </div>
+
+                        <p>
+                            Soft and delicious donuts topped with
+                            chocolate and sweet glaze.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOD 6 -->
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="food-card">
+
+                    <div class="food-image">
+
+                        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=700&q=80"
+                             alt="Dessert">
+
+                    </div>
+
+                    <div class="food-content">
+
+                        <div class="d-flex justify-content-between">
+
+                            <h5>Chocolate Cake</h5>
+
+                            <span class="price">$9</span>
+
+                        </div>
+
+                        <div class="rating mb-2">
+                            ★★★★★
+                        </div>
+
+                        <p>
+                            Rich chocolate cake made for the
+                            perfect sweet ending.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- OFFER -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="offer reveal">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-7">
+
+                    <small>
+                        LIMITED TIME OFFER
+                    </small>
+
+                    <h2 class="mt-2">
+                        Get 30% OFF
+                        your first order!
+                    </h2>
+
+                    <p>
+                        Enjoy your favorite meals and discover
+                        something new today.
+                    </p>
+
+                    <a href="#menu-food" class="btn btn-light">
+                        Order Now
+                    </a>
+
+                </div>
+
+                <div class="col-lg-5 mt-4 mt-lg-0">
+
+                    <img class="offer-img"
+                         src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80"
+                         alt="Pizza">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="section" id="about">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+
+                <img class="about-img"
+                     src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=80"
+                     alt="Restaurant">
+
+            </div>
+
+
+            <div class="col-lg-6">
+
+                <small class="text-danger fw-bold">
+                    ABOUT FOODIE
+                </small>
+
+                <h2 class="section-title mt-2">
+                    Fresh ingredients.
+                    Amazing taste.
+                </h2>
+
+                <p class="text-muted mt-3">
+                    We believe great food starts with great
+                    ingredients. Our chefs prepare every dish
+                    with passion and attention to detail.
+                </p>
+
+                <ul class="about-list mt-4">
+
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Fresh ingredients every day
+                    </li>
+
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Professional chefs
+                    </li>
+
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Fast delivery
+                    </li>
+
+                    <li>
+                        <i class="bi bi-check-circle-fill"></i>
+                        100% customer satisfaction
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- REVIEWS -->
+
+<section class="section" id="reviews">
+
+    <div class="container">
+
+        <div class="text-center">
+
+            <h2 class="section-title">
+                What customers say
+            </h2>
+
+            <p class="section-subtitle">
+                Thousands of happy customers love FOODIE.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-md-4 reveal">
+
+                <div class="testimonial">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "Amazing food and super fast delivery.
+                        Everything arrived fresh and delicious."
+                    </p>
+
+                    <div class="user">
+
+                        <div class="avatar">AK</div>
+
+                        <div>
+                            <strong>Ahmed Khan</strong>
+                            <br>
+                            <small class="text-muted">
+                                Regular Customer
+                            </small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 reveal">
+
+                <div class="testimonial">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "The burger was absolutely delicious.
+                        Definitely one of my favorite restaurants."
+                    </p>
+
+                    <div class="user">
+
+                        <div class="avatar">SM</div>
+
+                        <div>
+                            <strong>Sarah Miller</strong>
+                            <br>
+                            <small class="text-muted">
+                                Food Lover
+                            </small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 reveal">
+
+                <div class="testimonial">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "Beautiful restaurant, friendly staff
+                        and incredible food. Highly recommended!"
+                    </p>
+
+                    <div class="user">
+
+                        <div class="avatar">JD</div>
+
+                        <div>
+                            <strong>James Davis</strong>
+                            <br>
+                            <small class="text-muted">
+                                Customer
+                            </small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- RESERVATION -->
+
+<section class="section" id="reservation">
+
+    <div class="container">
+
+        <div class="reservation">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-5">
+
+                    <h2>
+                        Book your table
+                    </h2>
+
+                    <p class="text-secondary mt-3">
+                        Planning a special dinner?
+                        Reserve your table with us today.
+                    </p>
+
+                </div>
+
+
+                <div class="col-lg-7">
+
+                    <form id="reservationForm">
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Your Name"
+                                       required>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <input type="email"
+                                       class="form-control"
+                                       placeholder="Email Address"
+                                       required>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <input type="date"
+                                       class="form-control"
+                                       required>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <select class="form-control">
+
+                                    <option>2 Guests</option>
+                                    <option>4 Guests</option>
+                                    <option>6 Guests</option>
+                                    <option>8 Guests</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-12">
+
+                                <button class="btn btn-food w-100">
+                                    Reserve Table
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-lg-5">
+
+                <h3 class="fw-bold text-white">
+                    <i class="bi bi-egg-fried text-danger"></i>
+                    FOODIE
+                </h3>
+
+                <p class="mt-3">
+                    Delicious food, fresh ingredients and
+                    unforgettable experiences.
+                </p>
+
+                <div class="social mt-3">
+
+                    <a href="#">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="bi bi-twitter-x"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-6 col-lg-2">
+
+                <h5>Quick Links</h5>
+
+                <a href="#home">Home</a>
+                <a href="#menu-food">Menu</a>
+                <a href="#about">About</a>
+                <a href="#reviews">Reviews</a>
+
+            </div>
+
+
+            <div class="col-6 col-lg-2">
+
+                <h5>Services</h5>
+
+                <a href="#">Delivery</a>
+                <a href="#">Takeaway</a>
+                <a href="#">Catering</a>
+                <a href="#">Reservations</a>
+
+            </div>
+
+
+            <div class="col-lg-3">
+
+                <h5>Contact</h5>
+
+                <p>
+                    <i class="bi bi-geo-alt me-2"></i>
+                    Main Street, City
+                </p>
+
+                <p>
+                    <i class="bi bi-telephone me-2"></i>
+                    +123 456 789
+                </p>
+
+                <p>
+                    <i class="bi bi-envelope me-2"></i>
+                    hello@foodie.com
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © <span id="year"></span> FOODIE.
+            All Rights Reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+
+    // Navbar scroll effect
+
+    window.addEventListener("scroll", function () {
+
+        const navbar = document.getElementById("navbar");
+
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+
+    });
+
+
+    // Scroll animation
+
+    const elements = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(function(entries) {
+
+        entries.forEach(function(entry) {
+
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+
+        });
+
+    }, {
+        threshold: 0.15
+    });
+
+
+    elements.forEach(function(element) {
+        observer.observe(element);
+    });
+
+
+    // Reservation form
+
+    document.getElementById("reservationForm")
+        .addEventListener("submit", function(e) {
+
+            e.preventDefault();
+
+            alert("Your table reservation has been submitted!");
+
+        });
+
+
+    // Year
+
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
